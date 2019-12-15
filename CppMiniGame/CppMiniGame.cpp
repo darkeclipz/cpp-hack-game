@@ -194,9 +194,11 @@ void attack() {
 		result << "You missed your attack.\r\n";
 	}
 	
-	goblin.health -= playerDamage;
 	if (goblin.health > 0) {
-		result << "The goblin has " << goblin.health << " health remaining.\r\n";
+		if (playerDamage > 0) {
+			goblin.health -= playerDamage;
+			result << "The goblin has " << goblin.health << " health remaining.\r\n";
+		}
 		int enemyDamage = get_enemy_damage();
 		result << "You received " << enemyDamage << " damage from the goblin.";
 		player.health -= enemyDamage;
@@ -274,6 +276,7 @@ state game_over() {
 	std::cout << msg.str();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	player.health = player.maxHealth;
+	map[player.pos.y][player.pos.x] = ' ';
 	return state::ENTER_NAME;
 }
 
