@@ -52,7 +52,7 @@
             <button onclick="H(document.getElementById('answer').value)">Check</button>
         </div>
         <h2>Sources</h2>
-        <a href="">This project can be found on GitHub.</a> But it would be considered cheating to look at it if you haven't solved the challenge yet ;-).
+        <a href="https://github.com/darkeclipz/cpp-hack-game">This project can be found on GitHub.</a> But it would be considered cheating to look at it if you haven't solved the challenge yet ;-).
         <script>
             async function H(m) {                  
               Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(m)))).map(z => z.toString(16).padStart(2, '0')).join('')
