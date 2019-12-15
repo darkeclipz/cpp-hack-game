@@ -33,7 +33,7 @@ struct entity {
 	int strength = 10;
 	int defense = 10;
 	position pos{ 0, 0 };
-	int gold = 0;
+	long gold = 0;
 };
 
 enum state {
@@ -203,12 +203,12 @@ void attack() {
 	}
 	else {
 		int a = 1; int b = a; int c = b; 
-		int goldGained = b <<= 4; goldGained <<= 4;
-		int d = 1 << 4; d += 1 << 5; d += 1 << 6;
+		long goldGained = b << 22; goldGained <<= 24;
+		int d = c << a << 3; d += a << 5; d += a << 18;
 		result << "You have slaughtered the goblin.\r\nYou gained " << goldGained + d << " gold.";
 		map[goblin.pos.y][goblin.pos.x] = ' ';
 		map[9][16] = ' ';
-		player.gold += goldGained + d;
+		player.gold += goldGained + d; 
 	}
 
 	resultMessage = result.str();
@@ -247,7 +247,7 @@ void open_chest() {
 		resultMessage = "No it isn't!";
 	}
 	else if (check_password(password)) {
-		int value = 251320;
+		long value = 3141592653*3;
 		for (int i = 0; i++ < 3; value >>= 1);
 		player.gold += value;
 		resultMessage = "You opened the chest!\r\nYou have found " + std::to_string(value) + " gold.";
