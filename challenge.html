@@ -1,43 +1,65 @@
+<!DOCTYPE html>
 <html>
-<script>
-async function H(m) {                  
-  Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(m)))).map(z => z.toString(16).padStart(2, '0')).join('')
-  == "37add4db97d1f115b9569407b0ef9b0a317578430dc4ba7114d9d21281b141f7" ?
-  alert('Well done, you have solved the challenge!') :
-  alert('Nope, that is not correct.') 
-};
-</script>
-<body>
-    <h1>CppHackGame</h1>
-    
-    <h2>About</h2>
-    <p>
-        The CppHackGame is a very small text-based RPG game. <br/>
-        However, this game is designed to be hacked as a challenge. 
-    </p>
-    <p>
-        It is not possible to normally beat the game. <br/>
-        Can you trick the program?
-    </p>
-    <p>
-        You can download the program here:
-    </p>
-    <ul>
-        <li><b>Executable</b>: </b></li>
-    </ul>
-    <p>
-        If the puzzle seems too hard, this might help:
-    </p>
-    <ul>
-        <li><b>PDB files</b>: </b></li>
-    </ul>
-    <h2>Challenge</h2>
-    <p>
-        Can you figure out how much gold you will have if you have completed the game?
-    </p>
-    <div>
-        <input id="answer" type="text" placeholder="Number" /> <br/>
-        <button onclick="H(document.getElementById('answer').value)">Check</button>
-    </div>
-</body>
+    <head>
+        <title>CppHackGame CTF Challenge</title>
+        <link href="https://fonts.googleapis.com/css?family=Courier+Prime&display=swap" rel="stylesheet"> 
+        <style>
+            body { margin: 60px auto; max-width: 650px; font-family: 'Courier Prime', monospace; }
+            input, button {
+                border: 1px #888 solid;
+                border-radius: 4px;
+                padding: 8px 6px;
+                margin: 8px;
+                text-align: center;
+                font-size: 16pt;
+            }
+            button:hover {
+                cursor: pointer;
+                background-color: #fefefe;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>CppHackGame CTF Challenge</h1>
+
+        <h2>The Game</h2>
+        <p>
+            The CppHackGame is a very small text-based RPG game. <br/>
+            However, this game is designed to be hacked as a challenge. 
+        </p>
+        <p>
+            It is not possible to normally beat the game. <br/>
+            Can you trick the program?
+        </p>
+        <p>
+            You can download the program here:
+        </p>
+        <ul>
+            <li><b>Executable</b>: <a href="https://github.com/darkeclipz/cpp-hack-game/blob/master/release_1.0/cpphackgame.exe">release_1.0/cpphackgame.exe</a></li>
+        </ul>
+        <p>
+            If the puzzle seems too hard, this might help:
+        </p>
+        <ul>
+            <li><b>PDB files</b>: <a href="https://github.com/darkeclipz/cpp-hack-game/blob/master/release_1.0/cpphackgame.pdb">release_1.0/cpphackgame.pdb</a></li>
+        </ul>
+        <h2>Challenge</h2>
+        <p>
+            Can you figure out how much gold you will have if you have completed the game?
+        </p>
+        <div style="text-align:center;">
+            <input id="answer" type="text" placeholder="Number"/> <br/>
+            <button onclick="H(document.getElementById('answer').value)">Check</button>
+        </div>
+        <h2>Sources</h2>
+        <a href="">This project can be found on GitHub.</a> But it would be considered cheating to look at it if you haven't solved the challenge yet ;-).
+        <script>
+            async function H(m) {                  
+              Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(m)))).map(z => z.toString(16).padStart(2, '0')).join('')
+              == "37add4db97d1f115b9569407b0ef9b0a317578430dc4ba7114d9d21281b141f7" ?
+              alert('Well done, you have solved the challenge!') :
+              alert('Nope, that is not correct.') 
+            };
+        </script>
+    </body>
 </html>
